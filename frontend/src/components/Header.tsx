@@ -4,13 +4,19 @@ import { luckiestGuy } from '@/res/fonts';
 import Avatar from './ui/Avatar';
 import { IoMdMenu } from 'react-icons/io';
 import IconButton from './ui/IconButton';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from './ui/Link';
+import { usePathname } from 'next/navigation';
 
 export default function Header() {
+  const pathname = usePathname();
   const [navOpen, setNavOpen] = useState(false);
 
   const toggleNavOpen = () => setNavOpen((prevNavOpen) => !prevNavOpen);
+
+  useEffect(() => {
+    setNavOpen(false);
+  }, [pathname]);
 
   return (
     <div className="bg-red-600 text-white flex justify-center px-4 h-14 relative">
@@ -39,20 +45,20 @@ export default function Header() {
         </div>
       </div>
       <div
-        className={`absolute top-full h-fit z-10 left-0 right-0 bg-red-600 md:hidden ${navOpen ? 'max-h-[140px]' : 'max-h-0'} transition-all duration-500`}
+        className={`absolute top-full h-fit z-10 left-0 right-0 bg-red-600 overflow-hidden md:hidden ${navOpen ? 'max-h-[140px]' : 'max-h-0'} transition-all duration-500`}
       >
         <nav className="flex flex-col text-sm">
           <Link
             href="/"
             className="font-bold p-4 transition-all hover:bg-red-500"
-            activeClassName="font-bold"
+            activeClassName="font-bold bg-red-500"
           >
             Home
           </Link>
           <Link
             href="/explore"
             className="p-4 transition-all hover:bg-red-500"
-            activeClassName="font-bold"
+            activeClassName="font-bold bg-red-500"
           >
             Explore
           </Link>

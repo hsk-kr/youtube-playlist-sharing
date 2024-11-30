@@ -47,10 +47,13 @@ export default function Explore() {
       <div>
         <Search />
       </div>
-      <div className="p-4 flex flex-wrap gap-2">
+      <div className="p-4 flex flex-wrap gap-2 justify-center sm:justify-start">
         {playlists.map((playlist) => (
           <PlaylistCard key={playlist.title} {...playlist} />
         ))}
+      </div>
+      <div className="flex justify-center">
+        <span className="loading loading-spinner loading-lg text-red-500"></span>
       </div>
     </div>
   );
