@@ -11,34 +11,31 @@ const playlists: ComponentProps<typeof PlaylistCard>[] = [
     thumbnail: 'https://img.youtube.com/vi/o1IaduQICO0/maxresdefault.jpg',
     version: 1,
     score: 5,
-    reviews: 30,
-    subscribers: 20,
+    numReviews: 30,
+    numSubscribers: 20,
     subscribed: false,
-    favorite: true,
     tags: ['programming', 'javascript'],
   },
   {
     title: 'Learn German',
     desc: 'For German learners, never',
-    thumbnail: 'https://img.youtube.com/vi/CK1AqDsJ2RY/maxresdefault.jpg',
+    thumbnail: 'https://img.youtube.com/vi/xg60VxyK-9I/maxresdefault.jpg',
     version: 1,
     score: 3,
-    reviews: 2,
-    subscribers: 20,
+    numReviews: 2,
+    numSubscribers: 20,
     subscribed: true,
-    favorite: true,
     tags: ['language', 'german'],
   },
   {
     title: 'Get Motivated',
     desc: 'You need a motivation? You are in the right playlist!',
-    thumbnail: 'https://img.youtube.com/vi/xg60VxyK-9I/maxresdefault.jpg',
+    thumbnail: 'https://img.youtube.com/vi/CK1AqDsJ2RY/maxresdefault.jpg',
     version: 3,
     score: 1,
-    reviews: 3,
-    subscribers: 20,
+    numReviews: 3,
+    numSubscribers: 20,
     subscribed: false,
-    favorite: true,
     tags: ['motivation', 'self-esteem'],
   },
 ];
@@ -53,7 +50,7 @@ export default function Explore() {
             Create Playlist
           </Button>
         </div>
-        <div className="p-4 flex flex-wrap gap-2 justify-center sm:justify-start">
+        <div className="p-4 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 justify-center sm:justify-start">
           {playlists.map((playlist) => (
             <PlaylistCard key={playlist.title} {...playlist} />
           ))}
