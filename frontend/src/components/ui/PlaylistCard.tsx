@@ -4,11 +4,15 @@ import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
 import { AiFillStar, AiOutlineTeam } from 'react-icons/ai';
 import Button from './Button';
+import Link from './Link';
+import Avatar from './Avatar';
 
 export interface Props {
+  id: number;
   title: string;
-  thumbnail: string;
   desc: string;
+  author: string;
+  thumbnail: string;
   score: number;
   version: number;
   numSubscribers: number;
@@ -44,6 +48,7 @@ function ReviewScore({
 }
 
 export default function PlaylistCard({
+  id,
   title,
   thumbnail,
   desc,
@@ -55,28 +60,39 @@ export default function PlaylistCard({
   tags,
 }: Props) {
   return (
-    <div className="card bg-base-100 w-full h-80 shadow-xl cursor-pointer transition-all hover:scale-105">
+    <div
+      key={id}
+      className="card bg-base-100 w-full h-80 shadow-xl transition-all hover:scale-105"
+    >
       <figure>
-        <Image
-          src={thumbnail}
-          width={480}
-          height={270}
-          alt={title}
-          className="object-cover"
-        />
+        <Link href={`playlists/${id.toString()}`} className="cursor-pointer">
+          <Image
+            src={thumbnail}
+            width={480}
+            height={270}
+            alt={title}
+            className="object-cover"
+          />
+        </Link>
       </figure>
-      <div className="card-body p-2 ">
+      <div className="card-body p-2">
+        <div className="flex gap-2 items-center cursor-pointer hover:text-red-500 transition-all w-fit max-w-full">
+          <Avatar className="w-6" />
+          <span className="text-sm truncate flex-1">Nickname</span>
+        </div>
         <div className="flex justify-between">
           <ReviewScore numReviews={numReviews} score={score} />
           <div className="flex gap-1 items-center text-sm">
             <AiOutlineTeam /> {numSubscribers}
           </div>
         </div>
-        <h2 className="card-title text-lg">
-          <div className="badge badge-neutral">v{version}</div>
-          {title}
-        </h2>
-        <p className="line-clamp-2 text-sm h-10 max-h-10">{desc}</p>
+        <Link href={`playlists/${id.toString()}`} className="cursor-pointer">
+          <h2 className="card-title text-lg line-clamp-2 break-all">
+            <div className="badge badge-neutral mr-2">v{version}</div>
+            {title}
+          </h2>
+          <p className="line-clamp-2 text-sm h-10 max-h-10">{desc}</p>
+        </Link>
         <div className="flex flex-wrap gap-1">
           {tags.map((tag) => (
             <div

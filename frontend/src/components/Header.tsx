@@ -35,7 +35,7 @@ export default function Header() {
             <Link href="/" activeClassName="font-bold">
               Home
             </Link>
-            <Link href="/explore" activeClassName="font-bold">
+            <Link href="/playlists" activeClassName="font-bold">
               Explore
             </Link>
           </nav>
@@ -56,7 +56,7 @@ export default function Header() {
             Home
           </Link>
           <Link
-            href="/explore"
+            href="/playlists"
             className="p-4 transition-all hover:bg-red-500"
             activeClassName="font-bold bg-red-500"
           >
