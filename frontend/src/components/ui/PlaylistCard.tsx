@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { twMerge } from 'tailwind-merge';
+import Button from './Button';
 
 export interface Props {
   title: string;
@@ -52,16 +53,13 @@ export default function PlaylistCard({
           ))}
         </div>
         <div className="card-actions justify-center mt-1">
-          <button
-            className={twMerge(
-              'p-2 rounded-lg w-full transition-all hover:scale-105',
-              subscribed
-                ? 'bg-red-600 text-white'
-                : 'text-red-600 bg-white border border-red-600'
-            )}
+          <Button
+            variant={subscribed ? 'solid' : 'outlined'}
+            className="w-full"
+            hoverAnimation="scale"
           >
             {subscribed ? 'unsubscribe' : 'subscribe'}
-          </button>
+          </Button>
         </div>
       </div>
     </div>

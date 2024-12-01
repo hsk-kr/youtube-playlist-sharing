@@ -1,6 +1,8 @@
 import { ComponentProps } from 'react';
 import Search from '@/components/Search';
 import PlaylistCard from '../../components/ui/PlaylistCard';
+import Button from '@/components/ui/Button';
+import { AiOutlinePlus } from 'react-icons/ai';
 
 const playlists: ComponentProps<typeof PlaylistCard>[] = [
   {
@@ -43,18 +45,26 @@ const playlists: ComponentProps<typeof PlaylistCard>[] = [
 
 export default function Explore() {
   return (
-    <div className="w-full max-w-5xl p-4 mx-auto">
-      <div>
-        <Search />
+    <>
+      <div className="w-full max-w-5xl p-4 mx-auto">
+        <div className="relative">
+          <Search />
+          <Button className="absolute top-0 right-0 hidden sm:block">
+            Create Playlist
+          </Button>
+        </div>
+        <div className="p-4 flex flex-wrap gap-2 justify-center sm:justify-start">
+          {playlists.map((playlist) => (
+            <PlaylistCard key={playlist.title} {...playlist} />
+          ))}
+        </div>
+        <div className="flex justify-center">
+          <span className="loading loading-spinner loading-lg text-red-500"></span>
+        </div>
       </div>
-      <div className="p-4 flex flex-wrap gap-2 justify-center sm:justify-start">
-        {playlists.map((playlist) => (
-          <PlaylistCard key={playlist.title} {...playlist} />
-        ))}
+      <div className="fixed size-12 text-3xl cursor-pointer transition-all font-bold right-4 bottom-4 bg-red-600 text-white rounded-full flex justify-center items-center sm:hidden">
+        <AiOutlinePlus />
       </div>
-      <div className="flex justify-center">
-        <span className="loading loading-spinner loading-lg text-red-500"></span>
-      </div>
-    </div>
+    </>
   );
 }
